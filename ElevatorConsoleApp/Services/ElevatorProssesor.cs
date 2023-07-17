@@ -69,7 +69,7 @@ namespace ElevatorConsoleApp.Services
             { 
                 for (int i = 0; i <= elevator.CallFloorDifference; i++)
                 {
-                    this.PrintStep(current);
+                    this.PrintStep(current, "Up");
                     current++;
                 }
             }
@@ -77,13 +77,13 @@ namespace ElevatorConsoleApp.Services
             { 
                 for (int i = 0; i < elevator.CallFloorDifference; i++)
                 {
-                    this.PrintStep(current);
+                    this.PrintStep(current, "Down");
                     current--;
                 }
             }
             else
             { // we on the same floor
-                this.PrintStep(current);
+                this.PrintStep(current, "Same Floor");
             }
             elevator.CurrentFloor = requestFloor;
             return elevator.CurrentFloor;
@@ -110,9 +110,9 @@ namespace ElevatorConsoleApp.Services
             return listOfElevators;
         }
 
-        public void PrintStep(int currentFloor)
+        public void PrintStep(int currentFloor, string direction)
         {
-            Console.WriteLine($"Elevator on Floor : {currentFloor}");
+            Console.WriteLine($"Elevator on Floor : {currentFloor}, direction is : {direction}");
         }
 
         public void OpenDoor(Elevator elevator)

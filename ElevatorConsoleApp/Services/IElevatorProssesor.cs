@@ -14,7 +14,7 @@ namespace ElevatorConsoleApp.Services
         Elevator CheckClosest(int requestFloor, List<Elevator> elevators);
         List<Elevator> SetCapacity(List<Elevator> elevators, int numWaiting);
         List<Elevator> CreateRandomElevators(int numOfElevators, int maxNumOfFloors);
-        void PrintStep(int currentFloor);
+        void PrintStep(int currentFloor, string direction);
         void PrintElevatorDetails(Elevator elevator);
         void OpenDoor(Elevator elevator);
 
