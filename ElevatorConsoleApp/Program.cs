@@ -25,7 +25,7 @@ namespace ElevatorConsoleApp
             {
                 Console.WriteLine(e.Message);
             }
-
+            // add dependency injection
             IHostBuilder CreateHostBuilder(string[] strings)
             {
                 return Host.CreateDefaultBuilder()
@@ -54,9 +54,13 @@ namespace ElevatorConsoleApp
             Console.WriteLine($"Enter desired number of Elevators to be generated");
             int numOfElevators = Convert.ToInt32(Console.ReadLine());
             Console.WriteLine($"Enter number of floors available");
-            int maxNumOfFloors = Convert.ToInt32(Console.ReadLine());            
+            int maxNumOfFloors = Convert.ToInt32(Console.ReadLine()); 
+
+            //Create the elevators to begin with
             var elevators = _elevatorProssesor.CreateRandomElevators(numOfElevators, maxNumOfFloors);
-            var asJson = JsonConvert.SerializeObject(elevators);
+            var asJson = JsonConvert.SerializeObject(elevators); // To use for my unit test list of Elevators
+            
+            // print the created Elevators
             foreach(var elevtor in elevators) 
             {
                 _elevatorProssesor.PrintElevatorDetails(elevtor);
@@ -74,11 +78,13 @@ namespace ElevatorConsoleApp
             Console.WriteLine($"Enter number of people waiting floor");
             int numOfPplWaiting = Convert.ToInt32(Console.ReadLine());
             
+            // Call the elevator
             var elevator = _elevatorProssesor.CallElevator(elevators, requestFoor, numOfPplWaiting);           
 
             //Display Elevator as it moves to the requested floor
             _elevatorProssesor.MoveElevator(elevator, requestFoor);
 
+            // Open doors of elevator upon arrival on the floor
             _elevatorProssesor.OpenDoor(elevator);
 
             Console.ReadKey();

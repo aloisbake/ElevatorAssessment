@@ -40,11 +40,13 @@ namespace ElevatorConsoleApp.Services
         }
         public Elevator CheckClosest(int requestFloor, List<Elevator> elevators)
         {
+            // calculate and set call differenes on the elevators which determine the clossest to the caller
             foreach (Elevator elevator in elevators)
             {
                 elevator.CallFloorDifference = Math.Abs(requestFloor - elevator.CurrentFloor);
             }
 
+            // us linq Min to find the least call difference on the available elevators
             var result = elevators.Where((x) => x.CallFloorDifference == elevators.Min(y => y.CallFloorDifference)).ToList();
 
             return new Elevator
@@ -81,8 +83,8 @@ namespace ElevatorConsoleApp.Services
                     current--;
                 }
             }
-            else
-            { // we on the same floor
+            else // we on the same floor
+            { 
                 this.PrintStep(current, "Same Floor");
             }
             elevator.CurrentFloor = requestFloor;
