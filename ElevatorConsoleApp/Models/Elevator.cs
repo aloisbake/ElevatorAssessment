@@ -27,7 +27,6 @@ namespace ElevatorConsoleApp.Models
     public enum ElevatorStatus 
     {
         Moving, 
-        Stagnant,
-        faulty
+        Stagnant
     }
 }
